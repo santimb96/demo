@@ -1,7 +1,7 @@
 public abstract class AbstractCesar implements Cifrable {
     protected int rotate;
     protected final String alphabet = " abcdefghijklmnopqrstuvwxyz";
-    protected final String reverseAlphabet = "zyxwvutsrqponmlkjihgredcba ";
+    protected final String reverseAlphabet = "zyxwvutsrqponmlkjihgfedcba ";
     //String cifrado = "";
     //
     @Override
