@@ -1,7 +1,5 @@
-import java.io.File;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.io.PrintWriter;
+import java.io.*;
+import java.util.Scanner;
 
 public abstract class AbstractCesar implements Cifrable {
     protected int rotate;
@@ -62,6 +60,42 @@ public abstract class AbstractCesar implements Cifrable {
             escribir.println(String.format("%s: %s", textCifrado, textDescifrado));
             escribir.close();
             System.out.println("Descifrado correctamente!");
+        } catch (IOException e) {
+            e.printStackTrace(System.out);
+        }
+    }
+
+    public void leerFichero() {
+        Scanner scanner = new Scanner(System.in);
+        String ruta = null;
+        boolean estado = false;
+        System.out.println("Qué fichero quieres leer: cifrado o descifrado? (1/2)");
+        int opcion = scanner.nextInt();
+
+        while (estado == false) {
+            if (opcion == 1) {
+                ruta = "e:\\projects\\src\\java\\demo\\src\\txt\\cifrado.txt";
+                estado = true;
+            } else if (opcion == 2) {
+                ruta = "e:\\projects\\src\\java\\demo\\src\\txt\\descifrado.txt";
+                estado = true;
+            } else {
+                System.out.println("Ninguna opción es correcta. Vuelve a intentarlo");
+                opcion = scanner.nextInt();
+            }
+        }
+        File archivo = new File(ruta);
+        try {
+            BufferedReader entrada = new BufferedReader(new FileReader(archivo));
+            String lectura = entrada.readLine();
+            int contadorLineas = 0;
+
+            while (lectura != null) {
+                System.out.println(String.format("línea %s: %s", contadorLineas, lectura));
+                contadorLineas++;
+                lectura = entrada.readLine();
+            }
+            entrada.close();
         } catch (IOException e) {
             e.printStackTrace(System.out);
         }
